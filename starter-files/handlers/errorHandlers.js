@@ -6,11 +6,8 @@
   catchErrors(), catch any errors they throw, and pass it along to our express middleware with next()
 */
 
-exports.catchErrors = (fn) => {
-  return function(req, res, next) {
-    return fn(req, res, next).catch(next);
-  };
-};
+exports.catchErrors = (fn) => (req, res, next) =>
+  fn(req, res, next).catch(next);
 
 /*
   Not Found Error Handler
@@ -33,10 +30,9 @@ exports.flashValidationErrors = (err, req, res, next) => {
   if (!err.errors) return next(err);
   // validation errors look like
   const errorKeys = Object.keys(err.errors);
-  errorKeys.forEach(key => req.flash('error', err.errors[key].message));
+  errorKeys.forEach((key) => req.flash('error', err.errors[key].message));
   res.redirect('back');
 };
-
 
 /*
   Development Error Handler
@@ -48,7 +44,10 @@ exports.developmentErrors = (err, req, res, next) => {
   const errorDetails = {
     message: err.message,
     status: err.status,
-    stackHighlighted: err.stack.replace(/[a-z_-\d]+.js:\d+:\d+/gi, '<mark>$&</mark>')
+    stackHighlighted: err.stack.replace(
+      /[a-z_-\d]+.js:\d+:\d+/gi,
+      '<mark>$&</mark>'
+    ),
   };
   res.status(err.status || 500);
   res.format({
@@ -56,10 +55,9 @@ exports.developmentErrors = (err, req, res, next) => {
     'text/html': () => {
       res.render('error', errorDetails);
     }, // Form Submit, Reload the page
-    'application/json': () => res.json(errorDetails) // Ajax call, send JSON back
+    'application/json': () => res.json(errorDetails), // Ajax call, send JSON back
   });
 };
-
 
 /*
   Production Error Handler
@@ -70,6 +68,6 @@ exports.productionErrors = (err, req, res, next) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: {},
   });
 };
