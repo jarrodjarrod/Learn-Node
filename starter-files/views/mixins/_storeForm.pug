@@ -4,6 +4,8 @@ mixin storeForm(store = {})
     input(type="text" name="name" value=store.name)
     label(for="description") Description
     textarea(name="description" class="text-area" style="resize:vertical")= store.description
+    label(for="address") Address 
+    input(type="text" id="address" name="location[address]" value=store.location.address)
     - const choices = ['wifi', 'open late', 'family friendly', 'vegetarian', 'licensed']
     - const selectedTags = store.tags || []
     ul.tags 

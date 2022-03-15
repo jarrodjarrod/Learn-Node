@@ -1,4 +1,3 @@
-const { findByIdAndUpdate } = require('../models/Store');
 const Store = require('../models/Store');
 
 exports.homePage = (req, res) => {
