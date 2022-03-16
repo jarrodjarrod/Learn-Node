@@ -8,7 +8,13 @@ const storeSchema = new mongoose.Schema({
   tags: [String],
   created: { type: Date, default: Date.now },
   location: {
-    type: { type: String, default: 'Point' },
+    // see here for an explanation on this weird type nesting https://mongoosejs.com/docs/faq.html#type-key
+    type: {
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ['Point'], // 'location.type' must be 'Point'
+      required: true,
+      default: 'Point',
+    },
     coordinates: [{ type: Number, required: 'Please supply coordinates' }],
     address: {
       type: String,

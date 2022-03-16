@@ -5,10 +5,14 @@ mixin storeForm(store = {})
     label(for="description") Description
     textarea(name="description" class="text-area" style="resize:vertical")= store.description
     label(for="address") Address 
-    input(type="text" id="address" name="location[address]" value=store.location.address)
+    input(type="text" id="address" name="location[address]" value=(store.location && store.location.address) required)
+    label(for="lng") Longitude
+    input(type="text" id="lng" name="location[coordinates][0]" value=(store.location && store.location.coordinates[0]) required)
+    label(for="lat") Latitude
+    input(type="text" id="lat" name="location[coordinates][1]" value=(store.location && store.location.coordinates[1]) required)
     - const choices = ['wifi', 'open late', 'family friendly', 'vegetarian', 'licensed']
     - const selectedTags = store.tags || []
-    ul.tags 
+    ul.tags(style="padding-top:5px; justify-content:space-around") 
       each choice in choices
         .tag.tag__choice
           input(type="checkbox" id=choice value=choice name="tags" checked=(selectedTags.includes(choice)))
