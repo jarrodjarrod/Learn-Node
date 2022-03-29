@@ -1,0 +1,11 @@
+extends layout 
+
+block content 
+  .inner
+    h2 #{title}
+    form(method="post")
+      label New password 
+      input(type="password", name="new-password")
+      label Confirm new password 
+      input(type="password", name="confirm-password")
+      input.button(type="submit", value="Confirm new password ➡️")

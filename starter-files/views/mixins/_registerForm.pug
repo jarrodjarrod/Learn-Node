@@ -1,0 +1,13 @@
+mixin registerForm(body = {})
+  //- if body
+    //- - const {name, email, password, password-confirm} = body
+  form.form(action="/register" method="post") 
+    label(for="name") Full Name 
+    input(type="text" name="name" required value=(name || ''))
+    label(for="email") Email Address
+    input(type="email" name="email" required value=(email || ''))
+    label(for="password") Password 
+    input(type="password" name="password" value=(password || ''))
+    label(for="password-confirm") Confirm Password 
+    input(type="password" name="password-confirm" value=(password-confirm || ''))
+    input.button(type="submit" value="Create account ➡️")

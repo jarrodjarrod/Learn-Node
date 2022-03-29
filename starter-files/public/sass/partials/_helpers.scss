@@ -4,11 +4,14 @@
 }
 
 .button {
-  border: 0;
+  border: 1px;
   background: $yellow;
   color: $black;
   font-family: 'Panama';
   font-weight: 600;
+  &:hover {
+    cursor: pointer;
+}
 }
 
 .avatar {

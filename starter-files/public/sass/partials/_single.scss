@@ -48,14 +48,14 @@
     margin-left: -3rem;
   }
   &__location {
-    margin: 0;
-    margin-top: -3rem;
-    margin-right: -5rem;
+    // margin: 1rem;
+    // margin-top: 1rem;
+    // margin-right: -3rem;
     background: $black;
     color: white;
     display: inline-block;
-    float: right;
-    position: relative;
+    // float: right;
+    // position: relative;
     padding: 1rem;
     @media all and (max-width: 850px) {
       margin-right: 0;
